@@ -25,11 +25,10 @@ describe InvitationsController, type: :controller do
 
   it 'pays inviter' do
     expect(AppMailer).to receive_message_chain(:notify_payment, :deliver_later)
-
     expect { action }.to change { inviter.affilation_earnings_cents }.by(500)
   end
 
-  xcontext 'errors happen' do
+  context 'errors happen' do
 
     before do
       expect(CreditTransaction).to receive(:create) { raise ActiveRecord::ActiveRecordError }

@@ -5,6 +5,6 @@ class CreditTransaction < ActiveRecord::Base
 
   scope :for_user, ->(user) { where(user: user) }
 
-  validates :cents, numericality: { greater_than: 0 }
+  # validates :cents, numericality: { greater_than: 0 }
 
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-xdescribe Services::User::CreateFromInvitation do
+describe Services::User::CreateFromInvitation do
 
   let(:service)     { described_class.new(invitation) }
   let!(:invitation) { Factories.create_invitation }
@@ -9,9 +9,11 @@ xdescribe Services::User::CreateFromInvitation do
     expect { service.call }.to change { User.count }.by 1
   end
 
+  ### Fix this in on master!
+
   it 'links invitation to user' do
     service.call
-    expect(invitation.user).to be_present
+    expect(invitation.invitee).to be_present
   end
 
   it 'sends welcome_email' do
